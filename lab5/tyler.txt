@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+//**Osita Nduka
+//**Module 4
+//**CIST 2341
+
+    //Declaration
+    //listBox1.SelectedIndex = listBox1.FindString("Two") got from msdn;
+
+namespace DistanceConverter
+{
+    public partial class DisCon : Form
+    {
+        public DisCon()
+        {
+            InitializeComponent();
+        }
+
+        float unit = 0f;
+       
+
+        //first textBox
+        private void tB1_TextChanged(object sender, EventArgs e)
+        {
+            float.TryParse(tB1.Text, out unit);      
+        }
+        //convert button
+        private void fB1_Click(object sender, EventArgs e)
+        {
+            if (lBox1.SelectedIndex == lBox1.FindString("Inches")  && lBox2.SelectedIndex == lBox2.FindString("Inches"))
+            {
+                
+                tB2.Text = Convert.ToString(unit+" Inches");
+            }
+           else if (lBox1.SelectedIndex == lBox1.FindString("Feet") && lBox2.SelectedIndex == lBox2.FindString("Inches"))
+            {
+                unit = unit * 12;
+                tB2.Text = Convert.ToString(unit+" Inches");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Inches") && lBox2.SelectedIndex == lBox2.FindString("Feet"))
+            {
+                unit = unit / 12;
+                tB2.Text = Convert.ToString(unit + " Feet");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Yards") && lBox2.SelectedIndex == lBox2.FindString("Inches"))
+            {
+                unit = unit * 36;
+                tB2.Text = Convert.ToString(unit + " Inches");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Inches") && lBox2.SelectedIndex == lBox2.FindString("Yards"))
+            {
+                unit = unit / 36;
+                tB2.Text = Convert.ToString(unit + " Yards");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Feet") && lBox2.SelectedIndex == lBox2.FindString("Feet"))
+            {
+                
+                tB2.Text = Convert.ToString(unit + " Feet");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Yards") && lBox2.SelectedIndex == lBox2.FindString("Yards"))
+            {
+                
+                tB2.Text = Convert.ToString(unit + " Yards");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Feet") && lBox2.SelectedIndex == lBox2.FindString("Yards"))
+            {
+                unit = unit / 3;
+                tB2.Text = Convert.ToString(unit + " Yards");
+            }
+            else if (lBox1.SelectedIndex == lBox1.FindString("Yards") && lBox2.SelectedIndex == lBox2.FindString("Feet"))
+            {
+                unit = unit * 3;
+                tB2.Text = Convert.ToString(unit + " Feet");
+            }
+        }
+        //exit button
+        private void fB2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        
+    }//end main
+}//end class
